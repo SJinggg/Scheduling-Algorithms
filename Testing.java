@@ -12,6 +12,11 @@ public class Testing extends JFrame {
     setSize(700, 500);
     String m = JOptionPane.showInputDialog(this, "Enter number of process(es): ");
     int numP = Integer.parseInt(m);
+    while(numP < 3 || numP > 10){
+      JOptionPane.showMessageDialog(this,"Sorry, the process number should be in between 3 and 10","Warning", JOptionPane.WARNING_MESSAGE);
+      m = JOptionPane.showInputDialog(this, "Enter number of process(es): ");
+      numP = Integer.parseInt(m);
+    }
 
     Process[] process = new Process[numP];
     for(int i = 0; i < numP; i++){ 
