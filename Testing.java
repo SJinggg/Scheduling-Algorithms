@@ -8,8 +8,8 @@ public class Testing extends JFrame {
   public Testing() {
     setTitle("Scheduling Algorithms");
     setDefaultCloseOperation(EXIT_ON_CLOSE);
-    setResizable(false);
-    setSize(700, 500);
+    setResizable(true);
+    setSize(1000, 700);
     String m = JOptionPane.showInputDialog(this, "Enter number of process(es): ");
     int numP = Integer.parseInt(m);
     while(numP < 3 || numP > 10){
@@ -60,6 +60,7 @@ public class Testing extends JFrame {
       data[i][2] = Integer.toString(process[i].getBT());
       data[i][3] = Integer.toString(process[i].getPriority());
     }
+    
     String[] columnNames = {"Process", "Arrival time", "Burst Time", "Priority"};
     JPanel panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
@@ -101,7 +102,7 @@ public class Testing extends JFrame {
 
     JTable nPGantt = new JTable(model);
 
-    panel.add(Box.createVerticalStrut(10));
+    panel.add(Box.createVerticalStrut(20));
     panel.add(new JLabel("\nNon-preemptive Priority schedule: "));
     panel.add(new JLabel("Gantt Chart"));
     panel.add(nPGantt.getTableHeader());
@@ -141,7 +142,7 @@ public class Testing extends JFrame {
 
     JTable nPGantt2 = new JTable(model2);
 
-    panel.add(Box.createVerticalStrut(10));
+    panel.add(Box.createVerticalStrut(20));
     panel.add(new JLabel("\nNon-preemptive SJF: "));
     panel.add(new JLabel("Gantt Chart"));
     panel.add(nPGantt2.getTableHeader());
@@ -181,7 +182,7 @@ public class Testing extends JFrame {
 
     JTable rRGantt = new JTable(rRModel);
 
-    panel.add(Box.createVerticalStrut(10));
+    panel.add(Box.createVerticalStrut(20));
     panel.add(new JLabel("Round Robin with Quantum-" + timeQuantum +" : "));
     panel.add(new JLabel("Gantt Chart"));
     panel.add(rRGantt.getTableHeader());
@@ -221,7 +222,7 @@ public class Testing extends JFrame {
 
     JTable pSJFGantt = new JTable(pSJFModel);
 
-    panel.add(Box.createVerticalStrut(10));
+    panel.add(Box.createVerticalStrut(20));
     panel.add(new JLabel("Preemptive SJF: "));
     panel.add(new JLabel("Gantt Chart"));
     panel.add(pSJFGantt.getTableHeader());
@@ -262,7 +263,7 @@ public class Testing extends JFrame {
 
     JTable pPGantt = new JTable(pPModel);
 
-    panel.add(Box.createVerticalStrut(10));
+    panel.add(Box.createVerticalStrut(20));
     panel.add(new JLabel("Preemptive Priority: "));
     panel.add(new JLabel("Gantt Chart"));
     panel.add(pPGantt.getTableHeader());
