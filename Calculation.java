@@ -5,7 +5,7 @@ class Calculation{
 	int time = 0, count = 0;
 	private DecimalFormat df = new DecimalFormat("#.##");
 	
-	public void rRobin(Process[] p, int tQuantum){
+	public String[][] rRobin(Process[] p, int tQuantum){
 		ArrayList<Process> RR = new ArrayList<>();
 		ArrayList<Process> arrived = new ArrayList<>();
 		Process[] arrP = new Process[p.length];
@@ -32,19 +32,6 @@ class Calculation{
 					arrived.add(process.get(j));
 				}
 			}
-			//arrange by burst time
-			/* if(arrived.size() > 1)
-				for(int i = 0; i < arrived.size(); i++){
-					for(int j = i; j < arrived.size()-i; j++){
-						if(arrived.get(i).getAT() == arrived.get(j).getAT())
-							if(arrived.get(i).getBT() > arrived.get(j).getBT()){
-								Collections.swap(arrived, i, j);
-							}
-					}
-				} */
-			//System.out.println(arrived.get(0));
-			//System.out.println("Test: " + arrived);
-			//System.out.println("Time: " + time + ", cumulative: " + cumulative + ", arrivedSize: " + arrived.size());
 			if(arrived.size() > 0){
 				RR.add(arrived.get(0));
 				RR.get(count).setStartExTime(cumulative);
@@ -75,14 +62,34 @@ class Calculation{
 		
 		double avgTurnTime = turnAroundTime(p, RR);
 		double avgWaitTime = waitingTime(p);
-		
+
+		String[][] data = new String[RR.size()][6];
+
+		int j = 0;
+		data[j][4] = Integer.toString(maxTime);
+		for(Process i: p){
+			data[j][0] = Integer.toString(i.getFinishTime());
+			data[j][1] = Integer.toString(i.getTurnAround());
+			data[j][2] = Integer.toString(i.getWaitTime());
+			j++;
+		}
+
+		j = 0;
+		for(Process i: RR){
+			data[j][3] = Integer.toString(i.getStartExTime());
+			data[j][5] = i.getPName();
+			j++;
+		}
+
 		printTable(p);
 		
 		System.out.println("Avg = " + df.format(avgTurnTime));
 		System.out.println("AvgWait = " + df.format(avgWaitTime));
+
+		return data;
 	}
 	
-	public void preemptive(Process[] pro, String pType){
+	public String[][] preemptive(Process[] pro, String pType){
 		ArrayList<Process> p = new ArrayList<>();
 		ArrayList<Process> arrived = new ArrayList<>(); 
 		Process[] arrP = new Process[pro.length];
@@ -113,16 +120,12 @@ class Calculation{
 				Collections.sort(arrived, new ProcessComparator(new ProcessBTComparator(), new ProcessPNComparator()));
 			else
 				Collections.sort(arrived, new ProcessComparator(new ProcessPComparator(), new ProcessPNComparator()));
-			//System.out.println("cum" + cumulative + " time "+ time);
 			if(arrived.size() > 0){
 				p.add(arrived.get(0));
-				//System.out.println(p);
 				p.get(count).setStartExTime(cumulative);
 				if(pType.equals("SJF")){
 					if(p.size() >= 2){
 						currentBT = p.get(count-1).getBT() - (time - p.get(count-1).getStartExTime());
-						//System.out.println(currentBT + " : " + p.get(count).getBT());
-						//System.out.println((currentBT==0) + "-----" + "preB: " +p.get(count-1).getBT() + "-----" + p.get(count).getBT() );
 					}
 					result = p.size() > 1 && (currentBT > p.get(count).getBT() || (currentBT == 0 && p.get(count-1).getBT() > p.get(count).getBT()));
 					
@@ -134,14 +137,12 @@ class Calculation{
 					process.add(new Process(p.get(count-1)));
 					process.get(process.size() - 1).setBT(cumulative - p.get(count).getAT());
 					process.get(process.size() - 1).setAT(p.get(count).getBT() + p.get(count).getStartExTime());
-					//System.out.println(process.get(process.size() - 1).getPName() + ": " + process.get(process.size() - 1).getBT());
 					cumulative -= process.get(process.size() - 1).getBT();
 					if(process.get(process.size() - 1).getBT() == 0)
 						process.remove(process.size() - 1);
 					cumulative += p.get(count).getBT();
 				}
 				else if(p.size() > 1 && p.get(count).getAT() < p.get(count-1).getEndExTime()){
-					//System.out.println(p.get(count).getPName());
 					process.add(new Process(p.get(count)));
 					process.get(process.size() - 1).setAT(time+1);
 					p.remove(count);
@@ -152,7 +153,6 @@ class Calculation{
 					
 				
 				p.get(count).setEndExTime(p.get(count).getStartExTime() + p.get(count).getBT());
-				//System.out.println(p.get(count).getPName() + " Endtime "+ p.get(count).getEndExTime());
 				arrived.remove(0);
 				count++;
 				
@@ -168,23 +168,38 @@ class Calculation{
 			System.out.print(p.get(i).getStartExTime() + "\t");
 		} 
 		System.out.println(maxTime);
-		
 		double avgTurnTime = turnAroundTime(pro, p);
 		double avgWaitTime = waitingTime(pro);
-		
+		String[][] data = new String[p.size()][6];
+
+		int j = 0;
+		data[j][4] = Integer.toString(maxTime);
+		for(Process i: pro){
+			data[j][0] = Integer.toString(i.getFinishTime());
+			data[j][1] = Integer.toString(i.getTurnAround());
+			data[j][2] = Integer.toString(i.getWaitTime());
+			j++;
+		}
+
+		j = 0;
+		for(Process i: p){
+			data[j][3] = Integer.toString(i.getStartExTime());
+			data[j][5] = i.getPName();
+			j++;
+		}
+
 		printTable(pro);
 		
 		System.out.println("Avg = " + df.format(avgTurnTime));
 		System.out.println("AvgWait = " + df.format(avgWaitTime));
+		
+		return data;
+		
 	}
 	
 	
 	
-	public void nPreemptive(Process[] p, String nPType){
-		Process[] nP = new Process[p.length];
-		ArrayList<Process> arrived = new ArrayList<>(); 
 		ArrayList<Process> process = new ArrayList<>(Arrays.asList(p));
-		count = 0; time = 0; int maxTime = 0, cumulative = 0, minAT = 100;
 		for(Process i:p){
 			maxTime += i.getBT();
 			if(minAT > i.getAT())
@@ -229,11 +244,30 @@ class Calculation{
 		
 		double avgTurnTime = turnAroundTime(p, new ArrayList<Process>(Arrays.asList(nP)));
 		double avgWaitTime = waitingTime(p);
-		
+		String[][] data = new String[p.length][6];
+
+		int j = 0;
+		data[j][4] = Integer.toString(maxTime);
+		for(Process i: p){
+			data[j][0] = Integer.toString(i.getFinishTime());
+			data[j][1] = Integer.toString(i.getTurnAround());
+			data[j][2] = Integer.toString(i.getWaitTime());
+			j++;
+		}
+
+		j = 0;
+		for(Process i: nP){
+			data[j][3] = Integer.toString(i.getStartExTime());
+			data[j][5] = i.getPName();
+			j++;
+		}
+
 		printTable(p);
 		
 		System.out.println("Avg = " + df.format(avgTurnTime));
 		System.out.println("AvgWait = " + df.format(avgWaitTime));
+
+		return data;
 	}
 	
 	public double turnAroundTime(Process[] p, ArrayList<Process> process){
@@ -242,7 +276,6 @@ class Calculation{
 				if(p[i].getPName().equals(process.get(j).getPName())){
 					p[i].setTurnAround(process.get(j).getEndExTime() - p[i].getAT());
 					p[i].setFinishTime(process.get(j).getEndExTime());
-					//System.out.println(p[i].getPName() + ": " + process.get(j).getEndExTime() + " - " + p[i].getAT() + "= " + p[i].getTurnAround() + " or " + ta);
 				}
 			}
 		}

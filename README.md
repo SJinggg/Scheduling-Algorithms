@@ -2,9 +2,17 @@
 
 ## For compile and run
 
+### Manually Compile & run
+
 ```
-javac Try.java
+javac Testing.java
 
-java Try
+java Testing
 
+```
+
+### Automatically compile & run
+
+```
+> launch.bat
 ```
