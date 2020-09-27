@@ -65,7 +65,7 @@ class Calculation{
 		double avgTurnTime = avgTurnAroundTime(p, RR);
 		double avgWaitTime = avgWaitingTime(p);
 
-		String[][] data = new String[RR.size()][6];
+		String[][] data = new String[RR.size()][10];
 
 		int j = 0;
 		data[j][4] = Integer.toString(maxTime);
@@ -90,7 +90,11 @@ class Calculation{
 		System.out.println("Average Turnaround Time = " + df.format(avgTurnTime));
 		System.out.println("Average Waiting Time = " + df.format(avgWaitTime));
 
-
+		j = 0;
+		data[j][6] = Integer.toString(totalTurnTime);
+		data[j][7] = Integer.toString(totalWaitTime);
+		data[j][8] = df.format(avgTurnTime);
+		data[j][9] = df.format(avgWaitTime);
 		return data;
 	}
 	
@@ -177,7 +181,7 @@ class Calculation{
 		int totalWaitTime = totalWaitingTime(pro);
 		double avgTurnTime = avgTurnAroundTime(pro, p);
 		double avgWaitTime = avgWaitingTime(pro);
-		String[][] data = new String[p.size()][6];
+		String[][] data = new String[p.size()][10];
 
 		int j = 0;
 		data[j][4] = Integer.toString(maxTime);
@@ -202,6 +206,11 @@ class Calculation{
 		System.out.println("Average Turnaround Time = " + df.format(avgTurnTime));
 		System.out.println("Average Waiting Time = " + df.format(avgWaitTime));
 
+		j = 0;
+		data[j][6] = Integer.toString(totalTurnTime);
+		data[j][7] = Integer.toString(totalWaitTime);
+		data[j][8] = df.format(avgTurnTime);
+		data[j][9] = df.format(avgWaitTime);
 		
 		return data;
 		
@@ -260,7 +269,7 @@ class Calculation{
 		int totalWaitTime = totalWaitingTime(p);
 		double avgTurnTime = avgTurnAroundTime(p, new ArrayList<Process>(Arrays.asList(nP)));
 		double avgWaitTime = avgWaitingTime(p);
-		String[][] data = new String[p.length][6];
+		String[][] data = new String[p.length][10];
 
 		int j = 0;
 		data[j][4] = Integer.toString(maxTime);
@@ -285,6 +294,12 @@ class Calculation{
 		System.out.println("Average Turnaround Time = " + df.format(avgTurnTime));
 		System.out.println("Average Waiting Time = " + df.format(avgWaitTime));
 
+		j = 0;
+		data[j][6] = Integer.toString(totalTurnTime);
+		data[j][7] = Integer.toString(totalWaitTime);
+		data[j][8] = df.format(avgTurnTime);
+		data[j][9] = df.format(avgWaitTime);
+		
 		return data;
 	}
 	
