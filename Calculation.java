@@ -88,7 +88,7 @@ class Calculation{
 		System.out.println("Total Turnaround Time = " + totalTurnTime);
 		System.out.println("Total Waiting Time = " + totalWaitTime);
 		System.out.println("Average Turnaround Time = " + df.format(avgTurnTime));
-		System.out.println("Aerage Waiting Time = " + df.format(avgWaitTime));
+		System.out.println("Average Waiting Time = " + df.format(avgWaitTime));
 
 
 		return data;
@@ -200,7 +200,7 @@ class Calculation{
 		System.out.println("Total Turnaround Time = " + totalTurnTime);
 		System.out.println("Total Waiting Time = " + totalWaitTime);
 		System.out.println("Average Turnaround Time = " + df.format(avgTurnTime));
-		System.out.println("Aerage Waiting Time = " + df.format(avgWaitTime));
+		System.out.println("Average Waiting Time = " + df.format(avgWaitTime));
 
 		
 		return data;
@@ -283,34 +283,19 @@ class Calculation{
 		System.out.println("Total Turnaround Time = " + totalTurnTime);
 		System.out.println("Total Waiting Time = " + totalWaitTime);
 		System.out.println("Average Turnaround Time = " + df.format(avgTurnTime));
-		System.out.println("Aerage Waiting Time = " + df.format(avgWaitTime));
+		System.out.println("Average Waiting Time = " + df.format(avgWaitTime));
 
 		return data;
 	}
 	
 	public double avgTurnAroundTime(Process[] p, ArrayList<Process> process){
-		for(int i = 0; i < p.length; i++){
-			for(int j = 0; j < process.size(); j++){
-				if(p[i].getPName().equals(process.get(j).getPName())){
-					p[i].setTurnAround(process.get(j).getEndExTime() - p[i].getAT());
-					p[i].setFinishTime(process.get(j).getEndExTime());
-				}
-			}
-		}
-		int total = 0;
-		for(Process i:p){
-			total += i.getTurnAround();
-		}
+		int total = totalTurnAroundTime(p, process);
 		
 		return (double)total/p.length;
 	}
 	
 	public double avgWaitingTime(Process[] p){
-		int total = 0;
-		for(Process i: p){
-			i.setWaitTime(i.getTurnAround() - i.getBT());
-			total += i.getWaitTime();
-		}
+		int total = totalWaitingTime(p);
 		
 		return (double)total/p.length;
 	}
