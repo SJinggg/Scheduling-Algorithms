@@ -165,7 +165,7 @@ public class Testing extends JFrame {
     JTable rRTable = new JTable(rRData, calColumnNames);
 
     String[] rRName = new String[getRRData.length+1];
-    for(int i = 0; i < rRData.length; i++){
+    for(int i = 0; i < getRRData.length; i++){
       rRName[i] = getRRData[i][5];
     }
     rRName[getRRData.length] = "";
@@ -173,7 +173,7 @@ public class Testing extends JFrame {
     DefaultTableModel rRModel = new DefaultTableModel(rRName,  0);
 
     Object[] rRRow = new Object[getRRData.length+1];
-    for(int i = 0; i < rRData.length; i++){
+    for(int i = 0; i < getRRData.length; i++){
       rRRow[i] = getRRData[i][3];
     }
     rRRow[getRRData.length] = getRRData[0][4];
