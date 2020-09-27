@@ -88,7 +88,7 @@ class Calculation{
 		System.out.println("Total Turnaround Time = " + totalTurnTime);
 		System.out.println("Total Waiting Time = " + totalWaitTime);
 		System.out.println("Average Turnaround Time = " + df.format(avgTurnTime));
-		System.out.println("Aerage Waiting Time = " + df.format(avgWaitTime));
+		System.out.println("Average Waiting Time = " + df.format(avgWaitTime));
 
 
 		return data;
@@ -200,7 +200,7 @@ class Calculation{
 		System.out.println("Total Turnaround Time = " + totalTurnTime);
 		System.out.println("Total Waiting Time = " + totalWaitTime);
 		System.out.println("Average Turnaround Time = " + df.format(avgTurnTime));
-		System.out.println("Aerage Waiting Time = " + df.format(avgWaitTime));
+		System.out.println("Average Waiting Time = " + df.format(avgWaitTime));
 
 		
 		return data;
@@ -283,7 +283,7 @@ class Calculation{
 		System.out.println("Total Turnaround Time = " + totalTurnTime);
 		System.out.println("Total Waiting Time = " + totalWaitTime);
 		System.out.println("Average Turnaround Time = " + df.format(avgTurnTime));
-		System.out.println("Aerage Waiting Time = " + df.format(avgWaitTime));
+		System.out.println("Average Waiting Time = " + df.format(avgWaitTime));
 
 		return data;
 	}
