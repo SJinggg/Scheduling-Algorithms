@@ -26,12 +26,10 @@ class Main{
 		
 		System.out.print("Time Quantum for Round Robin: ");
 		int timeQuantum = scan.nextInt();
-		
-		scan.close();
 
-		Calculation cal = new Calculation();
+		Calculation1 cal = new Calculation1();
 		
- 		System.out.println("-----------------------------------------------------------------");
+		System.out.println("-----------------------------------------------------------------");
 		System.out.println("| Process \t| Arrival time \t| Burst Time \t| Priority \t|");
 		System.out.println("-----------------------------------------------------------------");
 		
@@ -60,6 +58,9 @@ class Main{
 		System.out.println("\n\n");
 		System.out.println("Preemptive Priority: ");
 		cal.preemptive(process, "Priority");
+
+		System.out.println();
+		int ans = scan.nextInt();
 		
 		System.exit(0);
 		

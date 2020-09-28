@@ -1,11 +1,9 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import java.awt.*;
+public class GUI extends JFrame {
 
-public class Testing extends JFrame {
-
-  public Testing() {
+  public GUI() {
     setTitle("Scheduling Algorithms");
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setResizable(true);
@@ -293,6 +291,6 @@ public class Testing extends JFrame {
     setVisible(true);
   }
   public static void main(String[] args){
-    new Testing();
+    new GUI();
   }
 }

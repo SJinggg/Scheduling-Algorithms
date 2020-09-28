@@ -1,2 +1,2 @@
-javac Testing.java
-java Testing
+javac GUI.java
+java GUI

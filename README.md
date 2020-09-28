@@ -5,9 +5,9 @@
 ### Manually Compile & run
 
 ```
-javac Testing.java
+javac GUI.java
 
-java Testing
+java GUI
 
 ```
 
