@@ -61,6 +61,8 @@ class Main{
 
 		System.out.println();
 		int ans = scan.nextInt();
+
+		scan.close();
 		
 		System.exit(0);
 		
