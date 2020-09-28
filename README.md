@@ -8,7 +8,6 @@
 javac GUI.java
 
 java GUI
-
 ```
 
 ### Automatically compile & run
