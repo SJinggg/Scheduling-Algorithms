@@ -1,2 +1,2 @@
-javac Try.java
-java Try
+javac GUI.java
+java GUI

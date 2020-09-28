@@ -1,11 +1,16 @@
 import java.util.*;
 
-class Try{
+class Main{
 
 	public static void main(String[] args){
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Select number of processes(3 - 10): ");
 		int numP = scan.nextInt();
+
+		while(numP < 3 || numP > 10){
+			System.out.print("Wrong Input! \n Select number of processes(3 - 10): ");
+			numP = scan.nextInt();
+		}
 		
 		Process[] process = new Process[numP];
 		for(int i = 0; i < numP; i++){
@@ -21,10 +26,10 @@ class Try{
 		
 		System.out.print("Time Quantum for Round Robin: ");
 		int timeQuantum = scan.nextInt();
+
+		Calculation1 cal = new Calculation1();
 		
-		Calculation cal = new Calculation();
-		
- 		System.out.println("-----------------------------------------------------------------");
+		System.out.println("-----------------------------------------------------------------");
 		System.out.println("| Process \t| Arrival time \t| Burst Time \t| Priority \t|");
 		System.out.println("-----------------------------------------------------------------");
 		
@@ -53,6 +58,9 @@ class Try{
 		System.out.println("\n\n");
 		System.out.println("Preemptive Priority: ");
 		cal.preemptive(process, "Priority");
+
+		System.out.println();
+		int ans = scan.nextInt();
 		
 		System.exit(0);
 		
